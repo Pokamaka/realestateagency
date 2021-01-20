@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace RealEstateAgency
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Object.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Object : Window
     {
-        public MainWindow()
+        public Object()
         {
             InitializeComponent();
-        }
-
-        private void Btn_login_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

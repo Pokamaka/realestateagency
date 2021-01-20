@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealEstateAgency.Classes;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace RealEstateAgency
     /// </summary>
     public partial class App : Application
     {
+        public static DataBase bd { get; } = new DataBase();
     }
 }
