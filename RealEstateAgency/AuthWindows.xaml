@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RealEstateAgency"
-        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="RealEstateAgency.MainWindow"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="RealEstateAgency.AuthWindows"
         mc:Ignorable="d"
         Title="Авторизация" Height="147.776" Width="429.131" FontFamily="Verdana" FontSize="16">
     <Grid>
@@ -17,12 +17,12 @@
             <ColumnDefinition Width="166*" />
             <ColumnDefinition Width="293*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Логин:" Margin="0,5,5,5" HorizontalAlignment="Right" Width="57"/>
-        <TextBlock Text="Пароль:" Grid.Row="1" Margin="5" HorizontalAlignment="Right" Width="68"/>
+        <TextBlock Text="Логин:" Margin="5" HorizontalAlignment="Right"/>
+        <TextBlock Text="Пароль:" Grid.Row="1" Margin="5" HorizontalAlignment="Right"/>
 
 
         <Button x:Name="btn_login" Click="Btn_login_Click" Content="Войти" Margin="5" Grid.Row="2" Grid.ColumnSpan="2" Width="100" Height="35"/>
-        <dxe:TextEdit Grid.Column="1" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top" Width="250" Height="25"/>
-        <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="1" VerticalAlignment="Top" Width="250"/>
+        <dxe:TextEdit x:Name="tb_Login" Grid.Column="1" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top" Width="250" />
+        <PasswordBox x:Name="tb_Password" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="1" VerticalAlignment="Top" Width="250"/>
     </Grid>
 </Window>

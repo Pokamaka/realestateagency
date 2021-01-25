@@ -12,19 +12,10 @@ namespace RealEstateAgency
     using System;
     using System.Collections.Generic;
     
-    public partial class Object
+    public partial class DealsCounter
     {
         public System.Guid ID { get; set; }
-        public string Name { get; set; }
-        public int CountRoom { get; set; }
-        public int Floor { get; set; }
-        public double SObject { get; set; }
-        public System.Guid DistrictID { get; set; }
-        public string Adress { get; set; }
-        public System.Guid Status { get; set; }
-        public System.Guid OwnerID { get; set; }
-        public System.Guid AgentID { get; set; }
-        public System.DateTime CD { get; set; }
-        public string Note { get; set; }
+        public int Value { get; set; }
+        public int Year { get; set; }
     }
 }

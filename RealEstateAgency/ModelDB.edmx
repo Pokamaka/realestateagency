@@ -52,13 +52,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
           <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="AgentID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ObjectID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StatusID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Summ" Type="float" Nullable="false" />
           <Property Name="Procent" Type="float" Nullable="false" />
           <Property Name="DateStart" Type="datetime" Nullable="false" />
-          <Property Name="DateEnd" Type="datetime" Nullable="false" />
+          <Property Name="DateEnd" Type="datetime" />
           <Property Name="CD" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="DistrictNames">
@@ -67,23 +69,6 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Object">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="CountRoom" Type="int" Nullable="false" />
-          <Property Name="Floor" Type="int" Nullable="false" />
-          <Property Name="SObject" Type="float" Nullable="false" />
-          <Property Name="DistrictID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Adress" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Status" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="OwnerID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="AgentID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="CD" Type="datetime" Nullable="false" />
-          <Property Name="Note" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="ObjectPhoto">
           <Key>
@@ -103,6 +88,24 @@
           <Property Name="Note" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Author" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CD" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Objects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameObj" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountRoom" Type="int" Nullable="false" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="SObject" Type="float" Nullable="false" />
+          <Property Name="Coast" Type="float" Nullable="false" />
+          <Property Name="DistrictID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Adress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Status" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OwnerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AgentID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CD" Type="datetime" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="ObjectStatus">
           <Key>
@@ -144,20 +147,37 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="DealsCounter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="Хранилище RealEstateAgencyModelContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ads" EntityType="Self.Ads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DistrictNames" EntityType="Self.DistrictNames" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Object" EntityType="Self.Object" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectPhoto" EntityType="Self.ObjectPhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectProcessingStatus" EntityType="Self.ObjectProcessingStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Objects" EntityType="Self.Objects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectStatus" EntityType="Self.ObjectStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectTypes" EntityType="Self.ObjectTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealsCounter" EntityType="Self.DealsCounter" Schema="u1268595_root" store:Type="Tables" />
+          <EntitySet Name="DealStatus" EntityType="Self.DealStatus" Schema="u1268595_root" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -179,43 +199,12 @@
           <Property Name="Status" Type="Guid" Nullable="false" />
           <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="Deals">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="AgentID" Type="Guid" Nullable="false" />
-          <Property Name="ObjectID" Type="Guid" Nullable="false" />
-          <Property Name="Summ" Type="Double" Nullable="false" />
-          <Property Name="Procent" Type="Double" Nullable="false" />
-          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="DistrictNames">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Object">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CountRoom" Type="Int32" Nullable="false" />
-          <Property Name="Floor" Type="Int32" Nullable="false" />
-          <Property Name="SObject" Type="Double" Nullable="false" />
-          <Property Name="DistrictID" Type="Guid" Nullable="false" />
-          <Property Name="Adress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Status" Type="Guid" Nullable="false" />
-          <Property Name="OwnerID" Type="Guid" Nullable="false" />
-          <Property Name="AgentID" Type="Guid" Nullable="false" />
-          <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Note" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ObjectPhoto">
           <Key>
@@ -278,9 +267,7 @@
         </EntityType>
         <EntityContainer Name="RealEstateAgencyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ads" EntityType="Self.Ads" />
-          <EntitySet Name="Deals" EntityType="Self.Deals" />
           <EntitySet Name="DistrictNames" EntityType="Self.DistrictNames" />
-          <EntitySet Name="Object" EntityType="Self.Object" />
           <EntitySet Name="ObjectPhoto" EntityType="Self.ObjectPhoto" />
           <EntitySet Name="ObjectProcessingStatus" EntityType="Self.ObjectProcessingStatus" />
           <EntitySet Name="ObjectStatus" EntityType="Self.ObjectStatus" />
@@ -290,6 +277,10 @@
           <EntitySet Name="UserStatus" EntityType="Self.UserStatus" />
           <EntitySet Name="Accounts" EntityType="RealEstateAgencyModel.Accounts" />
           <EntitySet Name="Authorization" EntityType="RealEstateAgencyModel.Authorization" />
+          <EntitySet Name="Objects" EntityType="RealEstateAgencyModel.Objects" />
+          <EntitySet Name="DealsCounter" EntityType="RealEstateAgencyModel.DealsCounter" />
+          <EntitySet Name="DealStatus" EntityType="RealEstateAgencyModel.DealStatus" />
+          <EntitySet Name="Deals" EntityType="RealEstateAgencyModel.Deals" />
         </EntityContainer>
         <EntityType Name="Accounts">
           <Key>
@@ -317,6 +308,55 @@
           <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="Objects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="NameObj" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountRoom" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="SObject" Type="Double" Nullable="false" />
+          <Property Name="Coast" Type="Double" Nullable="false" />
+          <Property Name="DistrictID" Type="Guid" Nullable="false" />
+          <Property Name="Adress" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Guid" Nullable="false" />
+          <Property Name="OwnerID" Type="Guid" Nullable="false" />
+          <Property Name="AgentID" Type="Guid" Nullable="false" />
+          <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DealsCounter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Deals">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="AgentID" Type="Guid" Nullable="false" />
+          <Property Name="ObjectID" Type="Guid" Nullable="false" />
+          <Property Name="StatusID" Type="Guid" Nullable="false" />
+          <Property Name="Summ" Type="Double" Nullable="false" />
+          <Property Name="Procent" Type="Double" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -340,44 +380,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Deals">
-            <EntityTypeMapping TypeName="RealEstateAgencyModel.Deals">
-              <MappingFragment StoreEntitySet="Deals">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
-                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
-                <ScalarProperty Name="Summ" ColumnName="Summ" />
-                <ScalarProperty Name="Procent" ColumnName="Procent" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="CD" ColumnName="CD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DistrictNames">
             <EntityTypeMapping TypeName="RealEstateAgencyModel.DistrictNames">
               <MappingFragment StoreEntitySet="DistrictNames">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Object">
-            <EntityTypeMapping TypeName="RealEstateAgencyModel.Object">
-              <MappingFragment StoreEntitySet="Object">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CountRoom" ColumnName="CountRoom" />
-                <ScalarProperty Name="Floor" ColumnName="Floor" />
-                <ScalarProperty Name="SObject" ColumnName="SObject" />
-                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
-                <ScalarProperty Name="CD" ColumnName="CD" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -471,6 +478,59 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Objects">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.Objects">
+              <MappingFragment StoreEntitySet="Objects">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CD" ColumnName="CD" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="Coast" ColumnName="Coast" />
+                <ScalarProperty Name="SObject" ColumnName="SObject" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="CountRoom" ColumnName="CountRoom" />
+                <ScalarProperty Name="NameObj" ColumnName="NameObj" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealsCounter">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.DealsCounter">
+              <MappingFragment StoreEntitySet="DealsCounter">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealStatus">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.DealStatus">
+              <MappingFragment StoreEntitySet="DealStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deals">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.Deals">
+              <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="CD" ColumnName="CD" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="Procent" ColumnName="Procent" />
+                <ScalarProperty Name="Summ" ColumnName="Summ" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

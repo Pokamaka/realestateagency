@@ -18,16 +18,21 @@ namespace RealEstateAgency
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AuthWindows : Window
     {
-        public MainWindow()
+        public AuthWindows()
         {
             InitializeComponent();
         }
 
         private void Btn_login_Click(object sender, RoutedEventArgs e)
         {
-
+            if (App.bd.Auth(tb_Login.Text, tb_Password.Password) == true)
+            {
+                MainMenuWindows MM = new MainMenuWindows();
+                MM.Show();
+                this.Hide();
+            }
         }
     }
 }

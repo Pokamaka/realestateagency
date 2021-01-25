@@ -26,9 +26,7 @@ namespace RealEstateAgency
         }
     
         public virtual DbSet<Ads> Ads { get; set; }
-        public virtual DbSet<Deals> Deals { get; set; }
         public virtual DbSet<DistrictNames> DistrictNames { get; set; }
-        public virtual DbSet<Object> Object { get; set; }
         public virtual DbSet<ObjectPhoto> ObjectPhoto { get; set; }
         public virtual DbSet<ObjectProcessingStatus> ObjectProcessingStatus { get; set; }
         public virtual DbSet<ObjectStatus> ObjectStatus { get; set; }
@@ -38,5 +36,9 @@ namespace RealEstateAgency
         public virtual DbSet<UserStatus> UserStatus { get; set; }
         public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<Authorization> Authorization { get; set; }
+        public virtual DbSet<Objects> Objects { get; set; }
+        public virtual DbSet<DealsCounter> DealsCounter { get; set; }
+        public virtual DbSet<DealStatus> DealStatus { get; set; }
+        public virtual DbSet<Deals> Deals { get; set; }
     }
 }

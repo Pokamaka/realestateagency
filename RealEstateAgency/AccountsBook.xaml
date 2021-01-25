@@ -1,0 +1,30 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RealEstateAgency"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="RealEstateAgency.AccountsBook"
+        mc:Ignorable="d"
+        Title="Клиенты" Height="700" Width="700" FontFamily="Verdana" FontSize="14" Loaded="Window_Loaded" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btn_UserCreate" Content="Создать" Click="Btn_UserCreate_Click" Margin="5" Height="28" Width="90" Padding="2"/>
+            <Button x:Name="btn_UserEdite" Content="Изменить" Click="Btn_UserEdite_Click" Margin="5" Height="28" Width="90" Padding="2"/>
+        </StackPanel>
+
+        <dxg:GridControl Name="grid_UserAcc" Grid.Row="1" AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" Margin="5" MouseDoubleClick="Grid_UserAcc_MouseDoubleClick">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True" AllowEditing="False" ShowSearchPanelMode="Always"
+                               SearchColumns="Name; Note" AllowGrouping="False" ShowGroupPanel="False"/>
+            </dxg:GridControl.View>
+            <dxg:GridColumn FieldName="FName" Header="ФИО" Width="350"/>
+            <dxg:GridColumn FieldName="PhoneNumber" Header="Номер телефона" Width="120"/>
+        </dxg:GridControl>
+    </Grid>
+</Window>

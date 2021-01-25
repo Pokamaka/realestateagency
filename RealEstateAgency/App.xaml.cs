@@ -15,5 +15,6 @@ namespace RealEstateAgency
     public partial class App : Application
     {
         public static DataBase bd { get; } = new DataBase();
+        public static bool open_InCreateWindows { get; set; }
     }
 }
