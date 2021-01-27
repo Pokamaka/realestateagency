@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +49,31 @@ namespace RealEstateAgency
                 DialogResult = true;
             }
         }
-  
+
+
+        //загрузка изображения
+        private void Btn_browseImg_Click(object sender, RoutedEventArgs e)
+        {
+            //var dialog = new OpenFileDialog
+            //{
+            //    CheckFileExists = true,
+            //    Multiselect = false,
+            //    Filter = "Images (*.jpg,*.png)|*.jpg;*.png|All Files(*.*)|*.*"
+            //};
+
+            //if (dialog.ShowDialog() != true) { return; }
+
+            //ImagePath.Text = dialog.FileName;
+            //MyImage.Source = new BitmapImage(new Uri(lImagePath.Text));
+
+            //byte[] imageData = null;
+            //// считываем переданный файл в массив байтов
+            //using (var binaryReader = new BinaryReader(dialog.FileName))
+            //{
+            //    imageData = binaryReader.ReadBytes(uploadImage.ContentLength);
+            //}
+            //// установка массива байтов
+
+        }
     }
 }

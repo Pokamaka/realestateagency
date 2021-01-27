@@ -6,10 +6,10 @@
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:local="clr-namespace:RealEstateAgency"
         mc:Ignorable="d"
-        Title="Главное меню" Height="350" Width="400" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Главное меню" Height="370" Width="400" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -21,11 +21,13 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="img_logo" Margin="5" Source="Image/tempLogo50x2.png" Height="40" Width="40" HorizontalAlignment="Left" />
+        <Image x:Name="img_logo" Margin="5" Source="Image/tempLogo50x2.png" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
-        <StackPanel Margin="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-            <TextBlock x:Name="tb_UserSName" Margin="5" Text="" VerticalAlignment="Center" />
-            <Image x:Name="img_account" Margin="5" Source="Image/testImg50x.png" Height="25" Width="25"/>
+        <StackPanel Margin="5" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+            <TextBlock x:Name="tb_UserSName" Margin="5" Text="" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <Button x:Name="btn_adminka" Margin="5" Visibility="Hidden">
+                <Image Source="Image/settings20px.png" Height="20" Width="20"/>
+            </Button>
         </StackPanel>
 
         <Button x:Name="btn_clients" Click="Btn_clients_Click" Content="Клиенты" Margin="5" Grid.Row="1" Width="120" Height="40"/>

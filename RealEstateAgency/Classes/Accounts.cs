@@ -14,5 +14,6 @@ namespace RealEstateAgency
         public string UserRoleName { get; set; }
         public string UserStatusName { get; set; }
         public string UserWhoCreate { get; set; }
+        public byte[] Photo { get; set; }
     }
 }

@@ -58,5 +58,41 @@ namespace RealEstateAgency.Properties {
                 this["User_SName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User_AuthLogin {
+            get {
+                return ((string)(this["User_AuthLogin"]));
+            }
+            set {
+                this["User_AuthLogin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string User_AuthPassword {
+            get {
+                return ((string)(this["User_AuthPassword"]));
+            }
+            set {
+                this["User_AuthPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool User_AuthRemember {
+            get {
+                return ((bool)(this["User_AuthRemember"]));
+            }
+            set {
+                this["User_AuthRemember"] = value;
+            }
+        }
     }
 }

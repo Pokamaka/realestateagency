@@ -40,5 +40,6 @@ namespace RealEstateAgency
         public virtual DbSet<DealsCounter> DealsCounter { get; set; }
         public virtual DbSet<DealStatus> DealStatus { get; set; }
         public virtual DbSet<Deals> Deals { get; set; }
+        public virtual DbSet<AccountsPhoto> AccountsPhoto { get; set; }
     }
 }

@@ -76,6 +76,7 @@ namespace RealEstateAgency.Classes
                 {
                     List<UserRole> role = new List<UserRole>(db.UserRole.ToList());
                     List<UserStatus> status = new List<UserStatus>(db.UserStatus.ToList());
+                    List<AccountsPhoto> photos = new List<AccountsPhoto>(db.AccountsPhoto.ToList());
 
                     accounts = db.Accounts.ToList();
                     foreach (Accounts item in accounts)
@@ -83,8 +84,11 @@ namespace RealEstateAgency.Classes
                         item.SName = $"{item.Surname} {item.Name.Substring(0, 1)}.{item.Patronymic.Substring(0, 1)}.";
                         item.FName = $"{item.Surname} {item.Name} {item.Patronymic}";
                         item.UserRoleName = role.Where(x => x.ID == item.UserRole).FirstOrDefault().Name;
-                        item.UserStatusName = status.Where(x => x.ID == item.UserStatus).FirstOrDefault().Name;           
+                        item.UserStatusName = status.Where(x => x.ID == item.UserStatus).FirstOrDefault().Name;
+                        //item.Photo = photos.Where(x => x.UserID == item.ID).FirstOrDefault().MainPhoto;
                     }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -477,5 +481,7 @@ namespace RealEstateAgency.Classes
                 }
             }
         }
+
+       
     }
 }

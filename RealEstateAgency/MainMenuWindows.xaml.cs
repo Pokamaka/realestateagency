@@ -27,6 +27,10 @@ namespace RealEstateAgency
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             tb_UserSName.Text = Properties.Settings.Default.User_SName;
+            if (Properties.Settings.Default.User_RoleName == "Разработчик")
+            {
+                btn_adminka.Visibility = Visibility.Visible;
+            }
         }
 
         //Кнопка "Клиенты"
@@ -68,7 +72,15 @@ namespace RealEstateAgency
         //Кнопка "Выход" это назад на форму авторизации
         private void Btn_exit_Click(object sender, RoutedEventArgs e)
         {
+            AuthWindows AW = new AuthWindows();
+            AW.Show();
+            this.Hide();
+        }
 
+        //обработка закрытия приложение -> сразу проходит де авторизация
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

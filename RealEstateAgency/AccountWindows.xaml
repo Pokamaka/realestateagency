@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RealEstateAgency"
         mc:Ignorable="d"
-        Title="Аккаунт" Height="400" Width="500" FontFamily="Verdana" FontSize="14" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Аккаунт" Height="500" Width="500" FontFamily="Verdana" FontSize="14" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="230"/>
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -38,7 +38,19 @@
                 <TextBox x:Name="tb_UserPatronic" Text="{Binding Path=Patronymic}" Margin="5" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap"/>
                 <!--<ComboBox x:Name="cb_UserSex" Margin="5" Grid.Row="3" Grid.Column="1" />-->
             </Grid>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="165"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Image x:Name="photoAcc" Source="{Binding Path=Photo}" Margin="5" Width="130" Height="160"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button x:Name="btn_browseImg" Content="..." Margin="5" Padding="2" Width="35" Height="25" Click="Btn_browseImg_Click"/>
+                    <Button x:Name="btn_saveImg" Content="Сохранить" Margin="5" Padding="2" Width="35" Height="25" />
+                </StackPanel>
+                
 
+            </Grid>
         </Grid>
         <Grid Grid.Row="1" >
             <Grid.RowDefinitions>
