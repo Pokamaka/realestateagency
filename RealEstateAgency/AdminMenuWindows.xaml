@@ -5,11 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RealEstateAgency"
         mc:Ignorable="d"
-        Title="AdminMenuWindows" Height="581.568" Width="800">
+        Title="AdminMenuWindows" Height="581.568" Width="800" FontFamily="Verdana" FontSize="14" WindowStartupLocation="CenterScreen" SnapsToDevicePixels="True" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btn_backToMenu" Margin="5" Padding="2" Content="Назад" Height="35" Width="90" FontSize="14"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button x:Name="btn_GetAccess" Margin="5" Padding="2" Content="Доступ" Height="35" Width="90" FontSize="14" Click="Btn_GetAccess_Click"/>
+        </StackPanel>
+
+
     </Grid>
 </Window>

@@ -23,5 +23,25 @@ namespace RealEstateAgency
         {
             InitializeComponent();
         }
+
+        //Выдача доступа к приложению
+        private void Btn_GetAccess_Click(object sender, RoutedEventArgs e)
+        {
+            Authorization user = new Authorization();
+            user.ID = Guid.NewGuid();
+            AdminAccessUserAuthWindows AAUAW = new AdminAccessUserAuthWindows(user);
+            if (AAUAW.ShowDialog() == true)
+            {
+                if(App.bd.GetAccess(user) == true)
+                {
+                    MessageBox.Show($"Вы успешно выдали права на запуск пользователю - {user.FName}", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RealEstateAgency"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         mc:Ignorable="d"
-        Title="Сделк" MinHeight="220" Height="220" Width="535" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen">
+        Title="Сделка" MinHeight="220" Height="220" Width="535" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

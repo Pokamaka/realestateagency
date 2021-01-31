@@ -7,14 +7,14 @@
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         mc:Ignorable="d"
-        Title="Сделки" Height="900" Width="1200" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Сделки" Height="698" Width="1000" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="700" />
+            <ColumnDefinition Width="670" />
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>

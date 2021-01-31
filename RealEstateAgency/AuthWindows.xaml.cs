@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RealEstateAgency.Classes;
 
 namespace RealEstateAgency
 {
@@ -46,6 +47,7 @@ namespace RealEstateAgency
                     Properties.Settings.Default.User_AuthPassword = tb_Password.Password;
                     Properties.Settings.Default.Save();
                 }
+
                 MainMenuWindows MM = new MainMenuWindows();
                 MM.Show();
                 this.Hide();
@@ -81,6 +83,22 @@ namespace RealEstateAgency
                 Properties.Settings.Default.Save();
             }
         }
- 
+
+        //Кнопка восстановления пароля
+        private void Img_recover_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            AuthRecoverPasswordWindows RPW = new AuthRecoverPasswordWindows();
+
+            if(RPW.ShowDialog() == true)
+            {
+                return;
+            }
+        }
+
+        //Закрытие окна
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

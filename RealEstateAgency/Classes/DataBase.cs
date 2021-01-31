@@ -19,7 +19,7 @@ namespace RealEstateAgency.Classes
         /// <summary>
         /// Функция авторизации пользователя.
         /// Условия для авторизации: совпадение пароля и логина + активированый аккаунт
-        /// pokama - test123
+        /// pokama - test123 (CDD62A6D-790D-7358-8A27-AB3635107EF7)
         /// </summary>
         /// <param name="Login">Принимает логин пользователя</param>
         /// <param name="Password">Принимает пароль пользователя</param>
@@ -46,7 +46,7 @@ namespace RealEstateAgency.Classes
                     Accounts check = db.Accounts.Where(x => x.ID == account.UserID && x.UserStatus == UserStatus_Active).FirstOrDefault();                  
                     if (account == null || check == null)
                     {
-                        MessageBox.Show("Вы ввели не правильные данные для входа!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Вы ввели не равильные данные для входа!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
                     Properties.Settings.Default.User_ID = check.ID;
@@ -56,7 +56,7 @@ namespace RealEstateAgency.Classes
                 }
                 catch
                 {
-                    MessageBox.Show("Вы ввели не правильные данные для входа!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Вы ввели неправильные данные для входа!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }             
                 return true;
@@ -289,6 +289,7 @@ namespace RealEstateAgency.Classes
                     obj.Adress = _obj.Adress;
                     obj.Note = _obj.Note;
                     obj.Coast = _obj.Coast;
+                    obj.OwnerID = _obj.OwnerID;
 
                     obj.DistrictID = _obj.DistrictID;
                     obj.AgentID = _obj.AgentID;
@@ -482,6 +483,193 @@ namespace RealEstateAgency.Classes
             }
         }
 
-       
+        #region Восстановление пароля
+
+        /// <summary>
+        /// Функция проверки на существование пользователя и права досупа к вуsktop приложению
+        /// </summary>
+        /// <param name="Email">Принимает Email адресс по которому производится проверка</param>
+        /// <returns>Возращает True - если пользователь найден, False - если не найден</returns>
+        public bool CheckUser(string Email, Guid? userID)
+        {
+            using (RealEstateAgencyEntities db = new RealEstateAgencyEntities())
+            {
+                try
+                {
+                    Accounts checkUser;
+                    if (userID != Guid.Empty) //проверка по Email
+                    {
+                        checkUser = db.Accounts.Where(x => x.ID == userID).FirstOrDefault();
+                    }
+                    else //проверка по ID
+                    {
+                        checkUser = db.Accounts.Where(x => x.Email == Email).FirstOrDefault();
+                    }
+
+                    if (checkUser == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        var checkAuth = db.Authorization.Where(x => x.UserID == checkUser.ID).FirstOrDefault();
+                        if (checkAuth != null)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла ошибка при проверки пользователя. \n {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Функция восстановления пароля
+        /// </summary>
+        /// <param name="Email">Принимает Email адресс проверенного пользователя</param>
+        /// <returns>Возращает True - если пароль удачно изменен, False - если пароль не изменн</returns>
+        public bool RecoverPassword(string Email)
+        {
+            string NewPassword = string.Empty; //Новый пароль в обычном представление
+            Guid NewHashPassword = Guid.Empty; //Новый пароль в хэше для БД
+
+            using (RealEstateAgencyEntities db = new RealEstateAgencyEntities())
+            {
+                try
+                {
+                    Accounts searchUser = db.Accounts.Where(x => x.Email == Email).FirstOrDefault();
+                    Authorization AuthSearch = db.Authorization.Where(x => x.UserID == searchUser.ID).FirstOrDefault();
+
+
+                    #region Генерируем новый пароль 
+
+                    //Генерируем
+                    var r = new Random();
+                    while (NewPassword.Length < 8)
+                    {
+                        Char c = (char)r.Next(33, 125);
+                        if (Char.IsLetterOrDigit(c))
+                            NewPassword += c;
+                    }
+
+                    //Шифруем
+                    byte[] bytes = Encoding.Unicode.GetBytes(NewPassword);
+                    MD5CryptoServiceProvider CSP = new MD5CryptoServiceProvider();
+
+                    byte[] byteHash = CSP.ComputeHash(bytes);
+                    string hash = string.Empty;
+
+                    foreach (byte b in byteHash)
+                    {
+                        hash += string.Format("{0:x2}", b);
+                    }
+                    NewHashPassword = new Guid(hash);
+
+                    #endregion
+
+                    //сохраняяем новый пароль
+                    AuthSearch.Password = NewHashPassword;
+                    db.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла в формирование нового пароля или его записи! \n {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+                try
+                {
+                    SendMail SendMail = new SendMail();
+                    if(SendMail.SendAuthMail(Email, NewPassword) == true)
+                    {
+                        return true;
+                    }  
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла в формирование нового пароля или его записи! \n {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Функция выдачи прав доступа
+        /// </summary>
+        /// <param name="user">Принимает объект с полями класс Authorization</param>
+        /// <returns>Возращает True - если удачно, False - если не удачно</returns>
+        public bool GetAccess(Authorization user)
+        {
+            string NewPassword = string.Empty; //Новый пароль в обычном представление
+            Guid NewHashPassword = Guid.Empty; //Новый пароль в хэше для БД
+            using (RealEstateAgencyEntities db = new RealEstateAgencyEntities())
+            {
+                try
+                {
+                    #region Генерируем новый пароль 
+
+                    //Генерируем
+                    var r = new Random();
+                    while (NewPassword.Length < 8)
+                    {
+                        Char c = (char)r.Next(33, 125);
+                        if (Char.IsLetterOrDigit(c))
+                            NewPassword += c;
+                    }
+
+                    //Шифруем
+                    byte[] bytes = Encoding.Unicode.GetBytes(NewPassword);
+                    MD5CryptoServiceProvider CSP = new MD5CryptoServiceProvider();
+
+                    byte[] byteHash = CSP.ComputeHash(bytes);
+                    string hash = string.Empty;
+
+                    foreach (byte b in byteHash)
+                    {
+                        hash += string.Format("{0:x2}", b);
+                    }
+                    NewHashPassword = new Guid(hash);
+
+                    #endregion
+
+                    user.Password = NewHashPassword;
+                    db.Authorization.Add(user);
+                    db.SaveChanges();
+
+                    SendMail mail = new SendMail();
+                    if (mail.SendAccessMail(user.Email, user.Login, NewPassword, user.Name) == true)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Произошла ошибка при выдаче прав пользователю!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }          
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла ошибка при выдаче прав пользователю! \n {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+        }
+
     }
 }

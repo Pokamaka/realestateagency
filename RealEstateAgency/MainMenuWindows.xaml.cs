@@ -82,5 +82,13 @@ namespace RealEstateAgency
         {
             Environment.Exit(0);
         }
+
+        //Кнопка входа в панель администратора
+        private void Btn_adminka_Click(object sender, RoutedEventArgs e)
+        {
+            AdminMenuWindows AMW = new AdminMenuWindows();
+            AMW.Show();
+            this.Hide();
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RealEstateAgency"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
         mc:Ignorable="d"
-         Title="Объекты недвижемости" Height="700" Width="950" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+         Title="Объекты недвижимости" Height="700" Width="950" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600"/>
