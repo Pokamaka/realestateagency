@@ -49,10 +49,22 @@ namespace RealEstateAgency.Classes
                         MessageBox.Show("Вы ввели не равильные данные для входа!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
+
+                    #region Добавление системных параметров
                     Properties.Settings.Default.User_ID = check.ID;
                     Properties.Settings.Default.User_RoleName = db.UserRole.Where(x => x.ID == check.UserRole).FirstOrDefault().Name;
                     Properties.Settings.Default.User_SName = $"{check.Surname} {check.Name.Substring(0, 1)}.{check.Patronymic.Substring(0, 1)}.";
                     Properties.Settings.Default.Save();
+                    #endregion
+
+                    #region Запись в лог
+                    LogAuthtorization log = new LogAuthtorization();
+                    log.ID = Guid.NewGuid();
+                    log.UserID = Properties.Settings.Default.User_ID;
+                    log.CD = DateTime.Now;
+                    db.LogAuthtorization.Add(log);
+                    db.SaveChanges();
+                    #endregion               
                 }
                 catch
                 {
@@ -655,6 +667,16 @@ namespace RealEstateAgency.Classes
                     SendMail mail = new SendMail();
                     if (mail.SendAccessMail(user.Email, user.Login, NewPassword, user.Name) == true)
                     {
+                        #region Запись в лог
+                        LogGetAccess log = new LogGetAccess();
+                        log.ID = Guid.NewGuid();
+                        log.UserID = Properties.Settings.Default.User_ID;
+                        log.GetAccessUserID = user.UserID;
+                        log.CD = DateTime.Now;
+                        db.LogGetAccess.Add(log);
+                        db.SaveChanges();
+                        #endregion
+
                         return true;
                     }
                     else

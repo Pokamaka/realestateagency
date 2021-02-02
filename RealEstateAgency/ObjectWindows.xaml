@@ -1,12 +1,14 @@
-﻿<Window x:Class="RealEstateAgency.ObjectWindows"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RealEstateAgency"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+        x:Class="RealEstateAgency.ObjectWindows"
         mc:Ignorable="d"
-        Title="Объект недвижемости" Height="380" Width="520" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Объект недвижемости" Height="498.347" Width="520" FontFamily="Verdana" FontSize="14" SnapsToDevicePixels="True" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -16,6 +18,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -24,36 +27,36 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Наименование:" Margin="5" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-        <TextBox x:Name="tb_name" Text="{Binding Path=NameObj}" Margin="5" Grid.Column="1" TextWrapping="Wrap"/>
+        <TextBox x:Name="tb_name" Text="{Binding NameObj}" Margin="5" Grid.Column="1" TextWrapping="Wrap"/>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
             <TextBlock Text="Кол-во комнат:" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBox x:Name="tb_countRoom" Text="{Binding Path=CountRoom}" Margin="5" TextWrapping="Wrap" Width="70"/>
+            <TextBox x:Name="tb_countRoom" Text="{Binding CountRoom}" Margin="5" TextWrapping="Wrap" Width="70"/>
 
             <TextBlock Text="Этаж:" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBox x:Name="tb_Floor" Text="{Binding Path=Floor}" Margin="5" TextWrapping="Wrap" Width="70"/>
+            <TextBox x:Name="tb_Floor" Text="{Binding Floor}" Margin="5" TextWrapping="Wrap" Width="70"/>
 
             <TextBlock Text="Площадь:" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBox x:Name="tb_SObject" Text="{Binding Path=SObject}" Margin="5" TextWrapping="Wrap" Width="70"/>
+            <TextBox x:Name="tb_SObject" Text="{Binding SObject}" Margin="5" TextWrapping="Wrap" Width="70"/>
         </StackPanel>
 
         <TextBlock Text="Район:" Margin="5" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <ComboBox x:Name="cb_district" Margin="5" Grid.Row="2" Grid.Column="1" Width="200" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValue="{Binding Path=DistrictID}"/>
+        <ComboBox x:Name="cb_district" Margin="5" Grid.Row="2" Grid.Column="1" Width="200" HorizontalAlignment="Left" DisplayMemberPath="Name" SelectedValuePath="ID" SelectedValue="{Binding DistrictID}"/>
 
         <TextBlock Text="Владелец:" Margin="5" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <dxe:ButtonEdit x:Name="btn_SelectOwner" Text="{Binding Path=OwnerName}" Grid.Row="3" Grid.Column="1" Margin="5" AllowDefaultButton="False">
-            <dxe:ButtonInfo Name="btnSelectOwner" GlyphKind="DropDown" Click="BtnSelectOwner_Click"/>
+        <dxe:ButtonEdit x:Name="btn_SelectOwner" Text="{Binding OwnerName}" Grid.Row="3" Grid.Column="1" Margin="5" AllowDefaultButton="False">
+            <dxe:ButtonInfo x:Name="btnSelectOwner" GlyphKind="DropDown" Click="BtnSelectOwner_Click"/>
         </dxe:ButtonEdit>
 
         <TextBlock Text="Стоимость:" Margin="5" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right"/>
-        <TextBox x:Name="tb_coast" Text="{Binding Path=Coast}" Margin="5" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" />
+        <TextBox x:Name="tb_coast" Text="{Binding Coast}" Margin="5" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" />
 
         <TextBlock Text="Адрес:" Margin="5" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right"/>
-        <TextBox x:Name="tb_adress" Text="{Binding Path=Adress}" Margin="5" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Height="50"/>
-        
-        <TextBlock Text="Примечание:" Margin="5" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right"/>
-        <TextBox x:Name="tb_note" Text="{Binding Path=Note}" Margin="5" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Height="50"/>
+        <TextBox x:Name="tb_adress" Text="{Binding Adress}" Margin="5" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Height="50"/>
 
-        <Button x:Name="btn_save" Content="Сохранить" Click="Btn_save_Click" Margin="5" Grid.Row="7" Grid.Column="1" Width="100" Height="35" HorizontalAlignment="Right" Padding="2"/>
+        <TextBlock Text="Примечание:" Margin="5" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right"/>
+        <TextBox x:Name="tb_note" Text="{Binding Note}" Margin="5" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Height="50"/>
+
+        <Button x:Name="btn_save" Content="Сохранить" Click="Btn_save_Click" Margin="5" Grid.Row="8" Grid.Column="1" Width="100" Height="35" HorizontalAlignment="Right" Padding="2"/>
     </Grid>
 </Window>

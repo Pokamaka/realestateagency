@@ -22,6 +22,14 @@
           <Property Name="Author" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CD" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="AccountsPhoto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MainPhoto" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ads">
           <Key>
             <PropertyRef Name="ID" />
@@ -63,12 +71,44 @@
           <Property Name="DateEnd" Type="datetime" />
           <Property Name="CD" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="DealsCounter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="DistrictNames">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogAuthtorization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CD" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogGetAccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GetAccessUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CD" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ObjectPhoto">
           <Key>
@@ -121,6 +161,17 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProgrammVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Version" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Major" Type="int" Nullable="false" />
+          <Property Name="Minor" Type="int" Nullable="false" />
+          <Property Name="Build" Type="int" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Reviews">
           <Key>
             <PropertyRef Name="ID" />
@@ -147,46 +198,26 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="AccountsPhoto">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MainPhoto" Type="varbinary(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DealsCounter">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Value" Type="int" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DealStatus">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="Хранилище RealEstateAgencyModelContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountsPhoto" EntityType="Self.AccountsPhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ads" EntityType="Self.Ads" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Authorization" EntityType="Self.Authorization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealsCounter" EntityType="Self.DealsCounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealStatus" EntityType="Self.DealStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DistrictNames" EntityType="Self.DistrictNames" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogAuthtorization" EntityType="Self.LogAuthtorization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogGetAccess" EntityType="Self.LogGetAccess" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectPhoto" EntityType="Self.ObjectPhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectProcessingStatus" EntityType="Self.ObjectProcessingStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Objects" EntityType="Self.Objects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectStatus" EntityType="Self.ObjectStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjectTypes" EntityType="Self.ObjectTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgrammVersion" EntityType="Self.ProgrammVersion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AccountsPhoto" EntityType="Self.AccountsPhoto" Schema="u1268595_root" store:Type="Tables" />
-          <EntitySet Name="DealsCounter" EntityType="Self.DealsCounter" Schema="u1268595_root" store:Type="Tables" />
-          <EntitySet Name="DealStatus" EntityType="Self.DealStatus" Schema="u1268595_root" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -287,10 +318,13 @@
           <EntitySet Name="Accounts" EntityType="RealEstateAgencyModel.Accounts" />
           <EntitySet Name="Authorization" EntityType="RealEstateAgencyModel.Authorization" />
           <EntitySet Name="Objects" EntityType="RealEstateAgencyModel.Objects" />
-          <EntitySet Name="DealsCounter" EntityType="RealEstateAgencyModel.DealsCounter" />
-          <EntitySet Name="DealStatus" EntityType="RealEstateAgencyModel.DealStatus" />
           <EntitySet Name="Deals" EntityType="RealEstateAgencyModel.Deals" />
           <EntitySet Name="AccountsPhoto" EntityType="RealEstateAgencyModel.AccountsPhoto" />
+          <EntitySet Name="DealsCounter" EntityType="RealEstateAgencyModel.DealsCounter" />
+          <EntitySet Name="DealStatus" EntityType="RealEstateAgencyModel.DealStatus" />
+          <EntitySet Name="ProgrammVersion" EntityType="RealEstateAgencyModel.ProgrammVersion" />
+          <EntitySet Name="LogAuthtorization" EntityType="RealEstateAgencyModel.LogAuthtorization" />
+          <EntitySet Name="LogGetAccess" EntityType="RealEstateAgencyModel.LogGetAccess" />
         </EntityContainer>
         <EntityType Name="Accounts">
           <Key>
@@ -336,21 +370,6 @@
           <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Note" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="DealsCounter">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Value" Type="Int32" Nullable="false" />
-          <Property Name="Year" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DealStatus">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Deals">
           <Key>
             <PropertyRef Name="ID" />
@@ -374,6 +393,49 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="UserID" Type="Guid" Nullable="false" />
           <Property Name="MainPhoto" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DealsCounter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ProgrammVersion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Version" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Major" Type="Int32" Nullable="false" />
+          <Property Name="Minor" Type="Int32" Nullable="false" />
+          <Property Name="Build" Type="Int32" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LogAuthtorization">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LogGetAccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="GetAccessUserID" Type="Guid" Nullable="false" />
+          <Property Name="CD" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -519,23 +581,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DealsCounter">
-            <EntityTypeMapping TypeName="RealEstateAgencyModel.DealsCounter">
-              <MappingFragment StoreEntitySet="DealsCounter">
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DealStatus">
-            <EntityTypeMapping TypeName="RealEstateAgencyModel.DealStatus">
-              <MappingFragment StoreEntitySet="DealStatus">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Deals">
             <EntityTypeMapping TypeName="RealEstateAgencyModel.Deals">
               <MappingFragment StoreEntitySet="Deals">
@@ -557,6 +602,54 @@
             <EntityTypeMapping TypeName="RealEstateAgencyModel.AccountsPhoto">
               <MappingFragment StoreEntitySet="AccountsPhoto">
                 <ScalarProperty Name="MainPhoto" ColumnName="MainPhoto" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealsCounter">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.DealsCounter">
+              <MappingFragment StoreEntitySet="DealsCounter">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealStatus">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.DealStatus">
+              <MappingFragment StoreEntitySet="DealStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgrammVersion">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.ProgrammVersion">
+              <MappingFragment StoreEntitySet="ProgrammVersion">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Build" ColumnName="Build" />
+                <ScalarProperty Name="Minor" ColumnName="Minor" />
+                <ScalarProperty Name="Major" ColumnName="Major" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogAuthtorization">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.LogAuthtorization">
+              <MappingFragment StoreEntitySet="LogAuthtorization">
+                <ScalarProperty Name="CD" ColumnName="CD" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogGetAccess">
+            <EntityTypeMapping TypeName="RealEstateAgencyModel.LogGetAccess">
+              <MappingFragment StoreEntitySet="LogGetAccess">
+                <ScalarProperty Name="CD" ColumnName="CD" />
+                <ScalarProperty Name="GetAccessUserID" ColumnName="GetAccessUserID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

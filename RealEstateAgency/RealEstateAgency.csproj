@@ -192,6 +192,12 @@
     <Compile Include="DistrictNames.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="LogAuthtorization.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogGetAccess.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuWindows.xaml.cs">
       <DependentUpon>MainMenuWindows.xaml</DependentUpon>
     </Compile>
@@ -223,6 +229,9 @@
     </Compile>
     <Compile Include="ObjectWindows.xaml.cs">
       <DependentUpon>ObjectWindows.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgrammVersion.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Reviews.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
