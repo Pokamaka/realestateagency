@@ -71,5 +71,10 @@ namespace RealEstateAgency
         {
             tb_Email.BorderBrush = Brushes.Gray;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            lbl_version.Text = App.bd.GetVersion();
+        }
     }
 }

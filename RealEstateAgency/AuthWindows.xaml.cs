@@ -28,6 +28,7 @@ namespace RealEstateAgency
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            lbl_version.Text = App.bd.GetVersion();
             if (Properties.Settings.Default.User_AuthRemember == true)
             {
                 tb_Login.Text = Properties.Settings.Default.User_AuthLogin;

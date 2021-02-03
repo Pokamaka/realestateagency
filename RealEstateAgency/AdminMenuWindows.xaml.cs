@@ -43,5 +43,18 @@ namespace RealEstateAgency
         {
             Environment.Exit(0);
         }
+
+        private void Btn_EditVersion_Click(object sender, RoutedEventArgs e)
+        {
+            ProgrammVersion ver = App.bd.Version();
+            AdminVersionEditWindows AVEW = new AdminVersionEditWindows(ver);
+            if (AVEW.ShowDialog() == true)
+            {
+                if (App.bd.EditVersion(ver) == true)
+                {
+                    return;
+                }
+            }
+        }
     }
 }

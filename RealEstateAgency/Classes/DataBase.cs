@@ -13,8 +13,9 @@ namespace RealEstateAgency.Classes
     /// </summary>
     public class DataBase
     { 
-        Guid PokamaGuid = new Guid("F09F642A-9247-4B0D-A1CC-A39148EC5E59"); //GUID моего аккаута
-        Guid UserStatus_Active = new Guid("301C9782-D208-42CD-862C-6F2D30C46E0E"); //GUID пользовательского статуса - активирован
+        Guid PokamaGuid = new Guid("F09F642A-9247-4B0D-A1CC-A39148EC5E59"); //Guid моего аккаута
+        Guid UserStatus_Active = new Guid("301C9782-D208-42CD-862C-6F2D30C46E0E"); //Guid пользовательского статуса - активирован
+        Guid VersionGuid = new Guid("2F43F36C-D846-4493-8C65-53FC6F31C1F4"); //Guid записи версии
 
         /// <summary>
         /// Функция авторизации пользователя.
@@ -76,6 +77,36 @@ namespace RealEstateAgency.Classes
         }
 
         /// <summary>
+        /// Функция выдачи версии программы
+        /// </summary>
+        /// <returns>Возращает строку с версией программы</returns>
+        public string GetVersion()
+        {
+            string version = "";
+            using (RealEstateAgencyEntities db = new RealEstateAgencyEntities())
+            {
+                List<ProgrammVersion> versions = db.ProgrammVersion.ToList();
+                foreach (ProgrammVersion item in versions)
+                {
+                    version = $"{item.Version}.{item.Major}.{item.Minor}.{item.Build}";
+                }
+                return version;
+            }
+        }
+
+        /// <summary>
+        /// Функция выдачи версии программы
+        /// </summary>
+        /// <returns>Возращает объект с полями класса ProgrammVersion</returns>
+        public ProgrammVersion Version()
+        {
+            using (RealEstateAgencyEntities db = new RealEstateAgencyEntities())
+            {
+                return db.ProgrammVersion.Where(x => x.ID == VersionGuid).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
         /// Функция выгрузки всех аккаунтов
         /// </summary>
         /// <returns>Возращает список акаунтов с БД</returns>
@@ -99,8 +130,6 @@ namespace RealEstateAgency.Classes
                         item.UserStatusName = status.Where(x => x.ID == item.UserStatus).FirstOrDefault().Name;
                         //item.Photo = photos.Where(x => x.UserID == item.ID).FirstOrDefault().MainPhoto;
                     }
-
-
                 }
                 catch (Exception ex)
                 {
@@ -490,6 +519,35 @@ namespace RealEstateAgency.Classes
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Произошла ошибка при редактирование пользователя. \n {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Функция редактирования версии программы
+        /// </summary>
+        /// <param name="ver">Принимает объект с полями класса ProgrammVersion</param>
+        /// <returns>Возращает True - если удачно, False - если не удачно</returns>
+        public bool EditVersion(ProgrammVersion ver)
+        {
+            using (RealEstateAgencyEntities db = new RealEstateAgencyEntities())
+            {
+                try
+                {
+                    ProgrammVersion oldVer = db.ProgrammVersion.Where(x => x.ID == ver.ID).FirstOrDefault();
+                    oldVer.Version = ver.Version;
+                    oldVer.Major = ver.Major;
+                    oldVer.Minor = ver.Minor;
+                    oldVer.Build = ver.Build;
+                    oldVer.UpdateDate = DateTime.Now;
+                    db.SaveChanges();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла при редактирование! \n {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
             }

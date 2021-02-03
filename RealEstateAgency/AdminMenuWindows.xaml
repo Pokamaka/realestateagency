@@ -18,6 +18,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button x:Name="btn_GetAccess" Margin="5" Padding="2" Content="Доступ" Height="35" Width="90" FontSize="14" Click="Btn_GetAccess_Click"/>
+            <Button x:Name="btn_EditVersion" Margin="5" Padding="2" Content="Версия" Height="35" Width="90" FontSize="14" Click="Btn_EditVersion_Click"/>
         </StackPanel>
 
 

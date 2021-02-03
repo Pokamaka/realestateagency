@@ -42,6 +42,8 @@
         <StackPanel Grid.Row="5" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image x:Name="img_recover" Source="Image/icon_Help30px.png" Width="30" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonUp="Img_recover_MouseLeftButtonUp"/>
         </StackPanel>
-        
+
+        <TextBlock x:Name="lbl_version" Grid.Row="5" FontSize="10" Margin="5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+
     </Grid>
 </Window>

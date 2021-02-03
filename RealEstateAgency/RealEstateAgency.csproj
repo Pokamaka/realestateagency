@@ -159,6 +159,9 @@
     <Compile Include="AdminMenuWindows.xaml.cs">
       <DependentUpon>AdminMenuWindows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminVersionEditWindows.xaml.cs">
+      <DependentUpon>AdminVersionEditWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ads.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -255,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdminMenuWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminVersionEditWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
