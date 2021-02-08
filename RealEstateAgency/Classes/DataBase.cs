@@ -751,5 +751,32 @@ namespace RealEstateAgency.Classes
             }
         }
 
+        /// <summary>
+        /// Функция создания скидки
+        /// </summary>
+        /// <param name="obj">Принимает объект с полями класса Objects</param>
+        /// <returns>Возращает True - если удачно, False - если не удачно</returns>
+        public bool CreateSale(Objects obj)
+        {
+            using (RealEstateAgencyEntities db = new RealEstateAgencyEntities())
+            {
+                try
+                {
+                    Objects _obj = db.Objects.Where(x => x.ID == obj.ID).FirstOrDefault();
+
+                    _obj.SaleCost = obj.SaleCost;
+                    _obj.SaleProcent = obj.SaleProcent;
+
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла ошибка при создание скидки! \n {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+            }
+        }
+
     }
 }

@@ -233,6 +233,9 @@
     <Compile Include="ObjectWindows.xaml.cs">
       <DependentUpon>ObjectWindows.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProcentSaleWindows.xaml.cs">
+      <DependentUpon>ProcentSaleWindows.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProgrammVersion.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -305,6 +308,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProcentSaleWindows.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelDB.Context.cs">
@@ -360,6 +367,7 @@
     <Resource Include="Image\houses30px.png" />
     <Resource Include="Image\stats30px.png" />
     <Resource Include="Image\deals30px.png" />
+    <Resource Include="Image\sale26px.png" />
     <Content Include="Image\testImg50x.png" />
     <Content Include="ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

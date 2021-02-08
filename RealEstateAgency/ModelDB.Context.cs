@@ -36,7 +36,6 @@ namespace RealEstateAgency
         public virtual DbSet<UserStatus> UserStatus { get; set; }
         public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<Authorization> Authorization { get; set; }
-        public virtual DbSet<Objects> Objects { get; set; }
         public virtual DbSet<Deals> Deals { get; set; }
         public virtual DbSet<AccountsPhoto> AccountsPhoto { get; set; }
         public virtual DbSet<DealsCounter> DealsCounter { get; set; }
@@ -44,5 +43,6 @@ namespace RealEstateAgency
         public virtual DbSet<ProgrammVersion> ProgrammVersion { get; set; }
         public virtual DbSet<LogAuthtorization> LogAuthtorization { get; set; }
         public virtual DbSet<LogGetAccess> LogGetAccess { get; set; }
+        public virtual DbSet<Objects> Objects { get; set; }
     }
 }

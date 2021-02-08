@@ -27,5 +27,7 @@ namespace RealEstateAgency
         public System.Guid AgentID { get; set; }
         public System.DateTime CD { get; set; }
         public string Note { get; set; }
+        public double SaleProcent { get; set; }
+        public double SaleCost { get; set; }
     }
 }

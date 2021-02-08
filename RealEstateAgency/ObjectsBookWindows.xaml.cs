@@ -100,6 +100,22 @@ namespace RealEstateAgency
             grid_objects.SelectedItem = selectRec;
         }
 
-       
+        //Кнопка создания скидки
+        private void Btn_Sale_Click(object sender, RoutedEventArgs e)
+        {
+            selectObject = (Objects)grid_objects.SelectedItem;
+            if (selectObject != null)
+            {
+                ProcentSaleWindows PSW = new ProcentSaleWindows(selectObject);
+                if (PSW.ShowDialog() == true)
+                {
+                    if (App.bd.CreateSale(selectObject) == true)
+                    {
+                        UpdateData(selectObject);
+                    }
+                    return;
+                }
+            }
+        }
     }
 }
