@@ -356,6 +356,10 @@
     <Resource Include="Image\tempLogo50x2.png" />
     <Resource Include="Image\settings20px.png" />
     <Resource Include="Image\icon_Help30px.png" />
+    <Resource Include="Image\client30px.png" />
+    <Resource Include="Image\houses30px.png" />
+    <Resource Include="Image\stats30px.png" />
+    <Resource Include="Image\deals30px.png" />
     <Content Include="Image\testImg50x.png" />
     <Content Include="ModelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

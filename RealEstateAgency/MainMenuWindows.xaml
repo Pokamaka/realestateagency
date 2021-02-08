@@ -30,11 +30,31 @@
             </Button>
         </StackPanel>
 
-        <Button x:Name="btn_clients" Click="Btn_clients_Click" Content="Клиенты" Margin="5" Grid.Row="1" Width="120" Height="40"/>
-        <Button x:Name="btn_object" Click="Btn_object_Click" Content="Объекты" Margin="5" Grid.Row="2"  Width="120" Height="40"/>
-        <Button x:Name="btn_deals" Click="Btn_deals_Click" Content="Сделки" Margin="5" Grid.Row="3"  Width="120" Height="40"/>
-        <Button x:Name="btn_stats" Click="Btn_stats_Click" Content="Статистика" Margin="5" Grid.Row="4"  Width="120" Height="40"/>
-        <Button x:Name="btn_exit" Click="Btn_exit_Click" Content="Выход" Margin="5" Grid.Row="5" Width="120" Height="40" Background="Tomato" BorderBrush="White" Foreground="White" dx:ThemeManager.ThemeName="None"/>
+        <Button x:Name="btn_clients" Click="Btn_clients_Click" Margin="5" Grid.Row="1" Width="150" Height="40">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="5" Source="Image/client30px.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="Клиенты" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="100" Width="84" />
+            </StackPanel>
+        </Button> 
+        <Button x:Name="btn_object" Click="Btn_object_Click" Margin="5" Grid.Row="2"  Width="150" Height="40">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="5" Source="Image/houses30px.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="Объекты" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="100" Width="84" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btn_deals" Click="Btn_deals_Click" Margin="5" Grid.Row="3"  Width="150" Height="40">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="5" Source="Image/deals30px.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="Сделки" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="100" Width="84" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btn_stats" Click="Btn_stats_Click" Margin="5" Grid.Row="4"  Width="150" Height="40">
+            <StackPanel Orientation="Horizontal">
+                <Image Margin="5" Source="Image/stats30px.png" Height="30" Width="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="Статистика" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="100" Width="84" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btn_exit" Click="Btn_exit_Click" Content="Выход" Margin="5" Grid.Row="5" Width="135" Height="40" Background="Tomato" BorderBrush="White" Foreground="White" dx:ThemeManager.ThemeName="None"/>
 
         <ListBox x:Name="list_message" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Margin="5" />
 
